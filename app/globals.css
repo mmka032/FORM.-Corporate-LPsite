@@ -1,26 +1,594 @@
 @import "tailwindcss";
 
+/* =========================
+Color
+========================= */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    /* Page / Form */
+    --color-page-bg: #111111;
+    --color-form-bg: #2a2a2a;
+
+    /* Text */
+    --color-hero-heading: #f7f6f2;
+    --color-logo: #e8e8e6;
+    --color-heading-en: #2a2a2a;
+    --color-text: #b8b8b5;
+
+    /* UI */
+    --color-button: #a99162;
+    --color-error: #c96a6a;
 }
+
+/* =========================
+Tailwind Theme
+========================= */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    /* Page / Form */
+    --color-page-bg: var(--color-page-bg);
+    --color-form-bg: var(--color-form-bg);
+
+    /* Text */
+    --color-hero-heading: var(--color-hero-heading);
+    --color-logo: var(--color-logo);
+    --color-heading-en: var(--color-heading-en);
+    --color-text: var(--color-text);
+
+    /* UI */
+    --color-button: var(--color-button);
+    --color-error: var(--color-error);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* =========================
+Base
+========================= */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background: var(--color-page-bg);
+    color: var(--color-text);
+    font-family: var(--font-noto-serif-jp), serif;
+}
+
+/* =========================
+Typography
+========================= */
+
+/* ---------- Hero ---------- */
+
+.hero-title {
+    color: var(--color-hero-heading);
+
+    font-size: clamp(
+        2.375rem,
+        calc(5.9vw + 0.94rem),
+        6.25rem
+    );
+
+    font-weight: 700;
+    line-height: 2;
+    letter-spacing: 0.3em;
+}
+
+@media (min-width: 768px) {
+    .hero-title {
+        line-height: 1.6;
+    }
+}
+
+/* ---------- Body ---------- */
+
+.body-text {
+    color: var(--color-text);
+
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 3.5;
+    letter-spacing: 0.3em;
+}
+
+@media (min-width: 768px) {
+    .body-text {
+        font-size: 0.875rem;
+        letter-spacing: 0.4em;
+    }
+}
+
+/* =========================
+Header
+========================= */
+
+.header-menu {
+    color: var(--color-text);
+
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+}
+
+/* =========================
+Section Heading
+========================= */
+
+.section-heading {
+    position: relative;
+}
+
+/* ---------- H2 English ---------- */
+
+.heading-en {
+    display: block;
+
+    color: var(--color-heading-en);
+
+    font-size: clamp(
+        40px,
+        calc(10.476vw + 29.167px),
+        180px
+    );
+
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+/* ---------- H2 Japanese ---------- */
+
+.heading-ja {
+    position: absolute;
+    left: 0;
+
+    color: var(--color-text);
+
+    font-size: min(
+        calc(1.905vw + 22.571px),
+        50px
+    );
+
+    font-weight: 700;
+    line-height: 1.8125;
+    letter-spacing: 0.3em;
+
+    top: clamp(
+        54px,
+        calc(11.143vw + 10.543px),
+        171px
+    );
+}
+
+/* =========================
+Service
+========================= */
+
+/* ---------- H3 Service Lead ---------- */
+
+.service-lead {
+    color: var(--color-text);
+
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 2;
+    letter-spacing: 0.3em;
+}
+
+@media (min-width: 768px) {
+    .service-lead {
+        font-size: 2rem;
+        line-height: normal;
+    }
+}
+
+/* ---------- H4 Service Title ---------- */
+
+.service-title {
+    color: var(--color-text);
+
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+@media (min-width: 768px) {
+    .service-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* ---------- Description ---------- */
+
+.description {
+    color: var(--color-text);
+
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 2.5;
+    letter-spacing: 0.2em;
+}
+
+@media (min-width: 768px) {
+    .description {
+        font-size: 0.875rem;
+        line-height: 2.5;
+    }
+}
+
+/* =========================
+Form
+========================= */
+
+/* ---------- Form Label ---------- */
+
+.form-label {
+    color: var(--color-text);
+
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+}
+
+@media (min-width: 768px) {
+    .form-label {
+        font-size: 1rem;
+        letter-spacing: 0.3em;
+    }
+}
+
+/* ---------- Required ---------- */
+
+.form-required {
+    display: inline-block;
+
+    padding: 2px 6px;
+
+    color: var(--color-hero-heading);
+    background-color: var(--color-button);
+
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+}
+
+@media (min-width: 768px) {
+    .form-required {
+        font-size: 0.75rem;
+    }
+}
+
+/* ---------- Placeholder ---------- */
+
+.form-placeholder {
+    color: var(--color-text);
+
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+}
+
+/* ---------- Form Input ---------- */
+
+.form-input {
+    display: block;
+
+    width: 100%;
+    height: 52px;
+
+    padding: 16px 20px;
+
+    box-sizing: border-box;
+
+    background-color: var(--color-page-bg);
+    color: var(--color-text);
+
+    border: 1px solid var(--color-page-bg);
+
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+
+    outline: none;
+
+    transition: border-color 0.3s ease;
+}
+
+/* ---------- Textarea ---------- */
+
+.form-textarea {
+    height: 120px;
+}
+
+/* ---------- Focus ---------- */
+
+.form-input:focus {
+    border-color: var(--color-button);
+}
+
+/* ---------- Error Input ---------- */
+
+.form-input-error {
+    border-color: var(--color-error);
+}
+
+.form-input-error:focus {
+    border-color: var(--color-error);
+}
+
+/* ---------- Error Message ---------- */
+
+.form-error {
+    margin-top: 12px;
+
+    color: var(--color-error);
+
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+}
+
+@media (min-width: 768px) {
+    .form-error {
+        font-size: 0.875rem;
+    }
+}
+
+/* ---------- PC Input ---------- */
+
+@media (min-width: 768px) {
+    .form-input {
+        width: 470px;
+        height: 62px;
+
+        padding: 20px 24px;
+
+        font-size: 0.875rem;
+    }
+
+    .form-textarea {
+        height: 170px;
+    }
+}
+
+/* =========================
+Footer
+========================= */
+
+.footer-text {
+    color: var(--color-text);
+
+    font-size: 0.5rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+}
+
+@media (min-width: 768px) {
+    .footer-text {
+        font-size: 0.75rem;
+        letter-spacing: 0.2em;
+    }
+}
+
+/* =========================
+Logo
+========================= */
+
+.logo {
+    color: var(--color-logo);
+
+    font-size: 1.875rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+}
+
+@media (min-width: 768px) {
+    .logo {
+        font-size: 2.5rem;
+    }
+}
+
+/* =========================
+Button
+========================= */
+
+/* ---------- Button Typography ---------- */
+
+.button {
+    display: inline-block;
+
+    box-sizing: border-box;
+
+    color: var(--color-button);
+    background-color: transparent;
+
+    border: 1px solid var(--color-button);
+
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+/* ---------- Button Hover ---------- */
+
+.button:hover {
+    color: var(--color-button);
+
+    transform: translateY(-4px);
+}
+
+@media (min-width: 768px) {
+    .button {
+        font-size: 1.125rem;
+    }
+}
+
+/* ---------- Header CTA ---------- */
+
+.header-cta {
+    padding: 8px 40px;
+}
+
+/* ---------- Form Button ---------- */
+
+.form-button {
+    width: 100%;
+
+    padding: 4px 0;
+}
+
+/* =========================
+Contact Form
+========================= */
+
+.contact-form {
+    position: relative;
+
+    width: 550px;
+    min-height: 774px;
+
+    margin: 0 auto;
+    padding: 48px 40px;
+
+    box-sizing: border-box;
+
+    background-color: var(--color-form-bg);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-form-fields {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* ---------- Form Button ---------- */
+
+.contact-form .form-button {
+    margin-top: 0;
+}
+
+/* =========================
+Form Success
+========================= */
+
+.form-success {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;
+
+    padding: 200px 65px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ---------- Success Title ---------- */
+
+.form-success-title {
+    margin: 0;
+
+    color: var(--color-hero-heading);
+
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+
+    white-space: nowrap;
+}
+
+/* ---------- Success Message ---------- */
+
+.form-success-message {
+    margin-top: 60px;
+
+    color: var(--color-text);
+
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 63px;
+    letter-spacing: 0.2em;
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+/* ---------- Success Button ---------- */
+
+.form-success-button {
+    width: auto;
+
+    margin-top: 109px;
+    padding: 4px 40px;
+
+    white-space: nowrap;
+}
+
+.form-success-message,
+.form-success-button {
+    width: 100%;
+}
+
+/* =========================
+SP
+========================= */
+
+@media (max-width: 767px) {
+
+    /* ---------- Contact Form ---------- */
+
+    .contact-form {
+        width: 342px;
+        min-height: 619px;
+
+        margin: 0 auto;
+        padding: 28px 32px;
+    }
+
+    .contact-form-fields {
+        width: 100%;
+        gap: 28px;
+    }
+
+    /* ---------- Form Input ---------- */
+
+    .form-input {
+        width: 100%;
+    }
+
+    /* ---------- Success ---------- */
+
+    .form-success {
+        padding: 180px 40px;
+    }
+
+    .form-success-title {
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    .form-success-message {
+        margin-top: 30px;
+
+        font-size: 12px;
+        line-height: 49px;
+        letter-spacing: 0.2em;
+
+        white-space: nowrap;
+    }
+
+    .form-success-button {
+        margin-top: 64px;
+        padding: 4px 0;
+    }
 }
