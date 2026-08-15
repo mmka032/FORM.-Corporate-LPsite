@@ -106,7 +106,7 @@ export default function ContactForm() {
         }
 
         try {
-            const response = await fetch("api/contact",{
+            const response = await fetch("/api/contact",{
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -123,15 +123,16 @@ export default function ContactForm() {
             console.log("送信成功：", result);
 
             setIsSubmitted(true);
+            
         } catch (error) {
             console.error("送信エラー：", error);
         }
 
         // 問題なければ、今は仮にconsole.logで確認しているだけ(コメントにある通り、後でメール送信処理に差し替える予定)
-        console.log("送信データ:", formData);
+        // console.log("送信データ:", formData);
 
         // バリデーション成功
-        setIsSubmitted(true);  // ← ここまで来たら成功
+        // setIsSubmitted(true);  // ← ここまで来たら成功
     };
 
     return (

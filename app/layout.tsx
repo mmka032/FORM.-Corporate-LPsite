@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import { Noto_Serif_JP } from "next/font/google";
+import { Montserrat, Noto_Serif_JP } from "next/font/google";
 import "./globals.css";
+
+const montserrat = Montserrat({
+    variable: "--font-montserrat",
+    subsets: ["latin"],
+    weight: ["700"],
+});
 
 const notoSerifJP = Noto_Serif_JP({
   variable: "--font-noto-serif-jp",
@@ -20,8 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className={`${notoSerifJP.variable} antialiased`}>
-      <body>{children}</body>
+    <html 
+        lang="ja" 
+        className={`${notoSerifJP.variable} ${montserrat.variable} antialiased`}
+    >
+        <body>{children}</body>
     </html>
   );
 }

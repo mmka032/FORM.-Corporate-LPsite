@@ -2,7 +2,7 @@
 
 export default function HeaderCTA() {
     return(
-        <a href="#contact" className="button header-cta">
+        <a href="#contact" className="button px-10 py-2">
             CONTACT
         </a>
     )

@@ -16,7 +16,7 @@ export default function FormButton({
         <button
             type={type}
             onClick={onClick}
-            className="button form-button"
+            className="button w-full py-1"
         >
             {children} {/* childrenに「送信」という文字を渡して使う。 */}
         </button>

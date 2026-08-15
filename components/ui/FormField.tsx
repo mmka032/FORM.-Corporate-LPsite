@@ -39,7 +39,10 @@ export default function FormField({
                 </label>
 
                 {/* Required 必須 */}
-                {required && <span className="form-required">必須</span>}
+                {required && 
+                    <span className="form-required">
+                        必須
+                    </span>}
             </div>
 
             {/* Input / Textarea */}
