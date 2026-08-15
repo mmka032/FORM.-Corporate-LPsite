@@ -413,7 +413,7 @@ Button
 .button:hover {
     color: var(--color-button);
 
-    transform: translateY(-4px);
+    transform: translateY(-3px);
 }
 
 @media (min-width: 768px) {
@@ -497,7 +497,7 @@ Form Success
 .form-success-title {
     margin: 0;
 
-    color: var(--color-hero-heading);
+    color: var(--color-text);
 
     font-size: 30px;
     font-weight: 500;

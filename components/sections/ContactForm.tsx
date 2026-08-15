@@ -96,24 +96,42 @@ export default function ContactForm() {
     };
 
     // handleSubmit:送信ボタンが押されたとき
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         // フォーム送信時のページ再読み込みを止める
         e.preventDefault(); 
 
         // バリデーションがfalse(エラーあり)なら、そこで処理を止めて何もしない
         if (!validateForm()) {
-            return;
+            return;  // ← エラーがあれば、ここで処理が止まる
         }
 
-        // TODO:
-        // バリデーションが通ったらResendで送信する
-        // 後でResendによるメール送信処理を追加
+        try {
+            const response = await fetch("api/contact",{
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const result = await response.json();
+
+            if (!response.ok || !result.success) {
+                throw new Error("メール送信に失敗しました。");
+            } 
+
+            console.log("送信成功：", result);
+
+            setIsSubmitted(true);
+        } catch (error) {
+            console.error("送信エラー：", error);
+        }
 
         // 問題なければ、今は仮にconsole.logで確認しているだけ(コメントにある通り、後でメール送信処理に差し替える予定)
         console.log("送信データ:", formData);
 
         // バリデーション成功
-        setIsSubmitted(true);
+        setIsSubmitted(true);  // ← ここまで来たら成功
     };
 
     return (
@@ -121,10 +139,12 @@ export default function ContactForm() {
         // (FormButton側のonClickではなく、<form>側のonSubmitで受け止めているのがポイント)。
         <form className="contact-form" onSubmit={handleSubmit}>
             {isSubmitted ? (
+                // trueなら → FormSuccess(成功画面)を表示
                 <FormSuccess
                     onBack={() => setIsSubmitted(false)}
                 />
             ) : (
+                // falseなら → 入力フォーム一式を表示
                 <div className="contact-form-fields">
                     {/* お名前 */}
                     <FormField
