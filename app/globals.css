@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* =========================
 Color
 ========================= */
@@ -8,6 +12,7 @@ Color
     /* Page / Form */
     --color-page-bg: #111111;
     --color-form-bg: #2a2a2a;
+    --color-card-bg: #2a2a2a;
 
     /* Text */
     --color-hero-heading: #f7f6f2;
@@ -28,6 +33,7 @@ Tailwind Theme
     /* Page / Form */
     --color-page-bg: var(--color-page-bg);
     --color-form-bg: var(--color-form-bg);
+    --color-card-bg: var(--color-form-bg)
 
     /* Text */
     --color-hero-heading: var(--color-hero-heading);
@@ -60,9 +66,9 @@ Typography
     color: var(--color-hero-heading);
 
     font-size: clamp(
-        2.375rem,
-        calc(5.9vw + 0.94rem),
-        6.25rem
+        30px,
+        9.23vw,
+        100px
     );
 
     font-weight: 700;
@@ -99,15 +105,36 @@ Container
 ========================= */
 
 .inner {
-    width: calc(100% - (2 * clamp(24px, 8.33vw, 120px)));
-    max-width: 1200px;
+    width: min(1200px, calc(100% - 48px));
     margin-inline: auto;
     box-sizing: border-box;
 }
 
+/* =========================
+Section spacing
+========================= */
+
+.section-about,
+.section-contact {
+    padding-top: 100px;
+    padding-bottom: 128px;
+}
+
+.section-service {
+    padding-top: 0;
+    padding-bottom: 128px;
+}
+
 @media (max-width: 767px) {
-    .inner {
-        width: calc(100% - 48px);
+    .section-about,
+    .section-contact {
+        padding-top: 50px;
+        padding-bottom: 100px;
+    }
+
+    .section-service {
+        padding-top: 0;
+        padding-bottom: 100px;
     }
 }
 
@@ -222,6 +249,7 @@ Section Heading
 
 .section-heading {
     position: relative;
+    height: clamp(170px, 18vw, 259px);
 }
 
 /* ---------- H2 English ---------- */
@@ -318,6 +346,39 @@ Service
     .description {
         font-size: 0.875rem;
         line-height: 2.5;
+    }
+}
+
+/* 画像アニメーション */
+.service-marquee {
+    --slide-width: 500px;
+
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+}
+
+.service-marquee-image {
+    width: var(--slide-width);
+    height: calc(var(--slide-width) * 0.8);
+
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(calc(var(--slide-width) * -3));
+    }
+}
+
+@media (max-width: 767px) {
+    .service-marquee {
+        --slide-width: 300px;
     }
 }
 
@@ -544,7 +605,6 @@ Contact Form
     width: 550px;
     min-height: 774px;
 
-    margin: 0 auto;
     padding: 48px 40px;
 
     box-sizing: border-box;
@@ -649,7 +709,6 @@ SP
         width: 342px;
         min-height: 619px;
 
-        margin: 0 auto;
         padding: 28px 32px;
     }
 
@@ -689,4 +748,22 @@ SP
         margin-top: 64px;
         padding: 4px 0;
     }
+}
+
+
+/* アニメーション */
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-up {
+    animation: fade-up 0.8s ease-out both;
 }

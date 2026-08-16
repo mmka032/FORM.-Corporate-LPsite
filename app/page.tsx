@@ -1,32 +1,25 @@
 "use client"
 
 import Header from "@/components/layout/Header";
-import ContactForm from "@/components/sections/ContactForm";
-// import ContactForm from "@/components/sections/ContactForm";
 import Hero from "@/components/sections/Hero";
-// import FormButton from "@/components/ui/FormButton";
-// import FormField from "@/components/ui/FormField";
+import About from "@/components/sections/About";
+import Service from "@/components/sections/Service";
+import Contact from "@/components/sections/Contact";
+import Footer from "@/components/layout/Footer";
 
-// import SectionHeading from "@/components/ui/SectionHeading";
-// import { useState } from "react";
 
 export default function Home() {
 
   return (
     <>
     <Header/>
-    {/* <SectionHeading
-      en="About"
-      ja="美しいだけでは、終わらせない。"
-      jaSp={{
-        first: "美しいだけでは、",
-        second: "終わらせない。",
-      }}
-    /> */}
     <main>
-      {/* <Hero /> */}
-      {/* <ContactForm /> */}
+      <Hero />
+      <About />
+      <Service />
+      <Contact />
     </main>
+    <Footer />
     </>
     );
 }

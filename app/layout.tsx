@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat, Noto_Serif_JP } from "next/font/google";
 import "./globals.css";
+import CustomCursor from "@/components/ui/CustomCursor";
 
 const montserrat = Montserrat({
     variable: "--font-montserrat",
@@ -30,7 +31,10 @@ export default function RootLayout({
         lang="ja" 
         className={`${notoSerifJP.variable} ${montserrat.variable} antialiased`}
     >
-        <body>{children}</body>
+        <body>
+          <CustomCursor />
+          {children}
+          </body>
     </html>
   );
 }

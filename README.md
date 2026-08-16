@@ -1,4 +1,18 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FORM.
+
+UI/UXからWebデザイン、実装までを行うWebサイトです。
+
+## Design
+
+デザインはFigmaで制作しています。
+
+[Figmaデザインを見る](https://www.figma.com/design/XNUR7eTtFJuZ3YGxr9T9IV/20260809_%E3%82%B3%E3%83%BC%E3%83%9D%E3%83%AC%E3%83%BC%E3%83%88%E3%82%B5%E3%82%A4%E3%83%88?node-id=0-1&t=ypeeph3sthoqops8-1)
+
+# Tech Stack
+- Next.js
+- TypeScript
+- Tailwind CSS
+
 
 ## Getting Started
 
