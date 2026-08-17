@@ -1,3 +1,5 @@
+// Aboutセクション（見出し＋紹介文）
+
 import Image from "next/image";
 import FadeIn from "../ui/FadeIn";
 import SectionHeading from "../ui/SectionHeading";

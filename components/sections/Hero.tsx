@@ -1,3 +1,5 @@
+// トップのメインビジュアル（キャッチコピー＋リード文）
+
 import Image from "next/image";
 import FadeIn from "../ui/FadeIn";
 

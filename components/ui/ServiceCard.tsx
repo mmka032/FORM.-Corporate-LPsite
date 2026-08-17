@@ -1,3 +1,5 @@
+// Serviceセクションの1カード（画像＋タイトル＋説明文）
+
 import Image from "next/image";
 
 type ServiceCardProps = {

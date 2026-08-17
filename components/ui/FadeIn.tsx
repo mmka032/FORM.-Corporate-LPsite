@@ -1,3 +1,4 @@
+// スクロールで画面内に入ったらフェードインさせるラッパー
 "use client";
 
 import { useEffect, useRef, useState } from "react";

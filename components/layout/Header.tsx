@@ -1,3 +1,4 @@
+// サイト共通ヘッダー（ロゴ・PCナビ・SPハンバーガーメニュー）
 "use client";
 
 import { useState } from "react";

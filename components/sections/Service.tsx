@@ -1,3 +1,5 @@
+// Serviceセクション（見出し＋3カード＋リード文＋マーキー画像）
+
 import { services } from "@/data/services";
 import { serviceImages } from "@/data/serviceImages";
 import ServiceCard from "../ui/ServiceCard";

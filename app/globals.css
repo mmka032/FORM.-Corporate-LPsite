@@ -4,6 +4,30 @@ html {
     scroll-behavior: smooth;
 }
 
+/* =========================
+アクセシビリティ：動きを減らす設定への対応
+OS側で「視差効果を減らす」等を設定しているユーザーには、
+FadeIn.tsxのフェードイン演出やマーキーの流れる動きを止める。
+設定していない大多数のユーザーには一切影響しない
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    /* マーキーは1周だけ動かして途中で止めるより、最初から静止画として見せる方が自然なため個別に無効化 */
+    .service-marquee {
+        animation: none !important;
+        transform: none !important;
+    }
+}
+
 /* =========================================================
 z-indexの重なり順（値が大きいほど手前）
 数値は各コンポーネントのTailwindクラス（z-*）に直書きされているため、

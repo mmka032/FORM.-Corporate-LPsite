@@ -1,3 +1,5 @@
+// 全ページ共通のレイアウト（フォント読み込み・html/bodyの土台・カスタムカーソルの設置）
+
 import type { Metadata } from "next";
 import { Montserrat, Noto_Serif_JP } from "next/font/google";
 import "./globals.css";

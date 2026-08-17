@@ -1,3 +1,4 @@
+// PC限定のカスタムカーソル（マウスに追従する丸）
 "use client";
 
 import { useEffect, useState } from "react";

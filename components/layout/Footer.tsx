@@ -1,3 +1,5 @@
+// サイト共通フッター（コピーライトのみ）
+
 export default function Footer() {
     return (
         <footer>

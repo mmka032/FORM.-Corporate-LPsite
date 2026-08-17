@@ -1,3 +1,5 @@
+// Contactセクション（見出し＋案内文＋フォーム）
+
 import Image from "next/image";
 import FadeIn from "../ui/FadeIn";
 import SectionHeading from "../ui/SectionHeading";
