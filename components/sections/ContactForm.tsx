@@ -122,8 +122,13 @@ export default function ContactForm() {
     return (
         // onSubmitで受けることで、送信ボタンのクリックとEnterキー送信の両方に対応できる
         <form
-            className="relative w-85.5 min-h-154.75 py-7 px-8 box-border bg-form-bg
-                    flex flex-col items-center md:w-137.5 md:min-h-193.5 md:py-12 md:px-10"
+            // w-full max-w-[342px]：342pxは固定ではなく上限。
+            // .innerコンテナは100vw-48pxのため、390px未満の画面幅では342pxが入りきらずはみ出す。
+            // 上限指定にすることで、狭い画面でも自動的に縮んで中央に収まるようにしている
+            className="
+            relative w-full max-w-85.5 min-h-154.75 py-7 px-8 box-border bg-form-bg
+            flex flex-col items-center md:max-w-137.5 md:w-137.5 md:min-h-193.5
+            md:py-12 md:px-10"
             onSubmit={handleSubmit}
         >
             {isSubmitted ? (
