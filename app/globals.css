@@ -258,6 +258,18 @@ Header（Header.tsx）
 ここにはCSSでしか表現できないハンバーガーの線だけ残している
 ========================= */
 
+/* ---------- Nav Link（About/Serviceのメニュー項目：クリック時に一瞬ゴールドに縮む演出） ---------- */
+
+.nav-link {
+    display: inline-block;
+    transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.nav-link:active {
+    color: var(--color-button);
+    transform: scale(0.94);
+}
+
 /* ---------- Hamburger Line ---------- */
 
 .hamburger-line {

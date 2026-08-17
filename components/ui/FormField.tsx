@@ -13,6 +13,7 @@ type FormFieldProps = {
     textarea?: boolean;
     maxLength?: number;
     error?: string;
+    autoComplete?: string;
 };
 
 export default function FormField({
@@ -26,6 +27,7 @@ export default function FormField({
     textarea = false,
     maxLength,
     error,
+    autoComplete,
 }: FormFieldProps) {
 
     const hasError = Boolean(error);
@@ -55,8 +57,10 @@ export default function FormField({
                         placeholder={placeholder}
                         maxLength={maxLength}
                         onChange={onChange}
+                        required={required}
                         className={`form-input form-textarea ${hasError ? "form-input-error" : ""}`}
                         aria-invalid={hasError}
+                        aria-required={required}
                         aria-describedby={hasError ? `${name}-error` : undefined}
                     />
                 ) : (
@@ -67,8 +71,11 @@ export default function FormField({
                         value={value}
                         placeholder={placeholder}
                         onChange={onChange}
+                        required={required}
+                        autoComplete={autoComplete}
                         className={`form-input ${hasError ? "form-input-error" : ""}`}
                         aria-invalid={hasError}
+                        aria-required={required}
                         aria-describedby={hasError ? `${name}-error` : undefined}
                     />
                 )}

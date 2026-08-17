@@ -1,3 +1,4 @@
+import Image from "next/image";
 import FadeIn from "../ui/FadeIn";
 import SectionHeading from "../ui/SectionHeading";
 
@@ -5,9 +6,11 @@ export default function About() {
     return (
         <section id="about" className="relative section-about">
             {/* 装飾線：画面幅いっぱい */}
-            <img
+            <Image
                 src="/about-gold-decorative-line.svg"
                 alt=""
+                width={1440}
+                height={125}
                 className="absolute top-2.5 left-0 z-10 w-full h-auto"
             />
 

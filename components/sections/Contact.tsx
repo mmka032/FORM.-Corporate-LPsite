@@ -1,3 +1,4 @@
+import Image from "next/image";
 import FadeIn from "../ui/FadeIn";
 import SectionHeading from "../ui/SectionHeading";
 import ContactForm from "./ContactForm";
@@ -7,9 +8,11 @@ export default function Contact() {
         <section id="contact" className="relative section-contact">
 
             {/* 装飾線：画面幅いっぱい 上 */}
-            <img
+            <Image
                 src="/contact-gold-decorative-line-1.svg"
                 alt=""
+                width={1440}
+                height={470}
                 className="absolute top-2.5 left-0 z-10 w-full h-auto"
             />
 
@@ -48,19 +51,21 @@ export default function Contact() {
                             <ContactForm />
                         </div>
 
-                        {/* FORM. */}
-                        <p className="logo order-3 mt-20 xl:mt-0">
+                        {/* FORM.：同一ページ内トップへ戻る導線 */}
+                        <a href="#" className="logo order-3 mt-20 xl:mt-0">
                             FORM.
-                        </p>
+                        </a>
 
                     </div>
                 </FadeIn>
             </div>
 
             {/* 装飾線：画面幅いっぱい 下 */}
-            <img
+            <Image
                 src="/contact-gold-decorative-line-2.svg"
                 alt=""
+                width={1440}
+                height={356}
                 className="absolute left-0 bottom-20 z-0 w-full h-auto"
             />
 

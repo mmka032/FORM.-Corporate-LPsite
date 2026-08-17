@@ -126,10 +126,12 @@ export default function ContactForm() {
             // .innerコンテナは100vw-48pxのため、390px未満の画面幅では342pxが入りきらずはみ出す。
             // 上限指定にすることで、狭い画面でも自動的に縮んで中央に収まるようにしている
             className="
-            relative w-full max-w-85.5 min-h-154.75 py-7 px-8 box-border bg-form-bg
-            flex flex-col items-center md:max-w-137.5 md:w-137.5 md:min-h-193.5
-            md:py-12 md:px-10"
+                    relative w-full max-w-85.5 min-h-154.75 py-7 px-8 box-border bg-form-bg
+                    flex flex-col items-center md:max-w-137.5 md:w-137.5 md:min-h-193.5 md:py-12 md:px-10"
             onSubmit={handleSubmit}
+            // noValidate：required/aria-requiredはスクリーンリーダー向けの情報として残しつつ、
+            // ブラウザ標準のバリデーションUIは無効化し、validateForm()の日本語エラーメッセージだけを表示させる
+            noValidate
         >
             {isSubmitted ? (
                 <FormSuccess
@@ -146,6 +148,7 @@ export default function ContactForm() {
                         required
                         placeholder="例：山本太郎"
                         error={errors.name}
+                        autoComplete="name"
                     />
 
                     {/* 会社名 */}
@@ -155,6 +158,7 @@ export default function ContactForm() {
                         value={formData.company}
                         onChange={handleChange}
                         placeholder="例：株式会社〇〇"
+                        autoComplete="organization"
                     />
 
                     {/* メールアドレス */}
@@ -164,8 +168,10 @@ export default function ContactForm() {
                         value={formData.email}
                         onChange={handleChange}
                         required
+                        type="email"
                         placeholder="例：form@form.com"
                         error={errors.email}
+                        autoComplete="email"
                     />
 
                     {/* お問い合わせ */}

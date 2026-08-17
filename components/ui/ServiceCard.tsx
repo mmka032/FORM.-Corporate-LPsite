@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type ServiceCardProps = {
     title: string;
     description: string;
@@ -11,18 +13,22 @@ export default function ServiceCard({
 }: ServiceCardProps) {
     return (
         <article className="bg-card-bg">
-            {/* img */}
-            <img 
-                src={image} 
-                alt=""
-                className="block w-full aspect-square object-cover"
-            />
+            {/* img：静止画1枚のみでアニメーションもないため、next/imageで最適化・遅延読み込みできる */}
+            <div className="relative w-full aspect-square">
+                <Image
+                    src={image}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 33vw, 100vw"
+                    className="object-cover"
+                />
+            </div>
 
             {/* Title */}
             <div className="px-8 py-7">
-                <h4 className="service-title">
+                <h3 className="service-title">
                     {title}
-                </h4>
+                </h3>
                 <p className="description pt-3.5">
                     {description}
                 </p>

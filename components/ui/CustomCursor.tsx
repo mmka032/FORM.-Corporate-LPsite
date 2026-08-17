@@ -38,7 +38,7 @@ export default function CustomCursor() {
             >
             {/* -translate-x-1/2 -translate-y-1/2：丸の中心がマウス座標に来るよう、
                 自分の幅・高さの半分だけ左上にずらしている */}
-            <div className="h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-text" />
+            <div className="h-7 w-7 -translate-x-1/2 -translate-y-1/2 rounded-full bg-text" />
         </div>
     )
 };

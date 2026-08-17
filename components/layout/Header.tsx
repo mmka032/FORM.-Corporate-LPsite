@@ -10,19 +10,21 @@ export default function Header() {
         <header className="w-full h-(--header-height-sp) py-2 box-border md:h-(--header-height-pc) md:py-5 sticky top-0 z-50">
             <div className="bg-page-bg/80 backdrop-blur-sm">
                 <div className="inner h-full py-2
-                            grid grid-cols-[1fr_auto] md:grid-cols-[1fr_auto_1fr] 
+                            grid grid-cols-[1fr_auto] md:grid-cols-[1fr_auto_1fr]
                             items-center">
-                    {/* logo */}
-                    <h1 className="logo">
-                        <a href="/">
+                    {/* logo：同一ページ内トップへ戻る導線のため#（見出しではなくブランド表示なのでpタグ） */}
+                    <p className="logo">
+                        <a href="#">
                             FORM.
                         </a>
-                    </h1>
+                    </p>
 
                     {/* PC navigation */}
-                    <nav className="hidden md:flex gap-20">
-                        <a href="#about">About</a>
-                        <a href="#service">Service</a>
+                    <nav aria-label="メインナビゲーション" className="hidden md:block">
+                        <ul className="flex gap-20">
+                            <li><a href="#about" className="nav-link">About</a></li>
+                            <li><a href="#service" className="nav-link">Service</a></li>
+                        </ul>
                     </nav>
 
                     {/* PC CTA */}
@@ -55,18 +57,27 @@ export default function Header() {
             </div>
 
             {/* SP menu */}
-            <nav className={`fixed top-(--header-height-sp) left-0 w-full h-[calc(100vh-var(--header-height-sp))] 
-                            box-border bg-page-bg flex flex-col items-center justify-center gap-20 
-                            text-center z-100 transition-transform duration-400 ease-[ease] 
-                            ${isMenuOpen ? "translate-y-0" : "translate-y-full"}`}
+            <nav
+                aria-label="モバイルメニュー"
+                className={`
+                            fixed top-(--header-height-sp) left-0 w-full h-[calc(100vh-var(--header-height-sp))] box-border bg-page-bg 
+                            flex flex-col items-center justify-center gap-20 text-center z-100 
+                            transition-transform duration-400 ease-[ease] 
+                            ${isMenuOpen ? "translate-y-0" : "translate-y-full"}
+                            `}
             >
-                <a href="#about" onClick={() => setIsMenuOpen(false)}>
-                    About
-                </a>
-
-                <a href="#service" onClick={() => setIsMenuOpen(false)}>
-                    Service
-                </a>
+                <ul className="flex flex-col items-center gap-20">
+                    <li>
+                        <a href="#about" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#service" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+                            Service
+                        </a>
+                    </li>
+                </ul>
 
                 <HeaderCTA />
             </nav>

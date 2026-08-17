@@ -1,12 +1,15 @@
+import Image from "next/image";
 import FadeIn from "../ui/FadeIn";
 
 export default function Hero() {
     return (
         <section className="relative h-[calc(100vh-var(--header-height-sp))] md:h-[calc(100vh-var(--header-height-pc))]">
             {/* 装飾線：画面幅いっぱい */}
-            <img 
-                src="/hero-gold-decorative-line.svg" 
-                alt="" 
+            <Image
+                src="/hero-gold-decorative-line.svg"
+                alt=""
+                width={1440}
+                height={457}
                 className="absolute top-2.5 left-0 z-10 w-full h-auto"
             />
 
