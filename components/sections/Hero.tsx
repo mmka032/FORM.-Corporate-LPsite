@@ -2,7 +2,7 @@ import FadeIn from "../ui/FadeIn";
 
 export default function Hero() {
     return (
-        <section className="relative h-[calc(100vh-57px)] md:h-[calc(100vh-89px)]">
+        <section className="relative h-[calc(100vh-var(--header-height-sp))] md:h-[calc(100vh-var(--header-height-pc))]">
             {/* 装飾線：画面幅いっぱい */}
             <img 
                 src="/hero-gold-decorative-line.svg" 

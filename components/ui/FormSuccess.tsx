@@ -15,7 +15,7 @@ export default function FormSuccess({onBack}: FormSuccessProps) {
             </h3>
 
             {/* Message */}
-            <div className="form-success-content">
+            <div>
                 <div className="form-success-message">
                     <p>お問い合わせを受け付けました</p>
                     <p>内容を確認の上、ご連絡いたします。</p>

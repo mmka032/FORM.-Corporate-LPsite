@@ -23,6 +23,11 @@ Color
     /* UI */
     --color-button: #a99162;
     --color-error: #c96a6a;
+
+    /* Layout */
+    /* Header/SPメニュー/Heroの高さ計算で共有する値。変更時はこの2つだけ直せばよい */
+    --header-height-sp: 57px;
+    --header-height-pc: 89px;
 }
 
 /* =========================
@@ -33,7 +38,7 @@ Tailwind Theme
     /* Page / Form */
     --color-page-bg: var(--color-page-bg);
     --color-form-bg: var(--color-form-bg);
-    --color-card-bg: var(--color-form-bg)
+    --color-card-bg: var(--color-form-bg);
 
     /* Text */
     --color-hero-heading: var(--color-hero-heading);
@@ -56,49 +61,10 @@ body {
     font-family: var(--font-noto-serif-jp), serif;
 }
 
-/* =========================
-Typography
-========================= */
-
-/* ---------- Hero ---------- */
-
-.hero-title {
-    color: var(--color-hero-heading);
-
-    font-size: clamp(
-        30px,
-        9.23vw,
-        100px
-    );
-
-    font-weight: 700;
-    line-height: 2;
-    letter-spacing: 0.3em;
-}
-
-@media (min-width: 768px) {
-    .hero-title {
-        line-height: 1.6;
-    }
-}
-
-/* ---------- Body ---------- */
-
-.body-text {
-    color: var(--color-text);
-
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 3.5;
-    letter-spacing: 0.3em;
-}
-
-@media (min-width: 768px) {
-    .body-text {
-        font-size: 1.125rem;
-        letter-spacing: 0.4em;
-    }
-}
+/* =========================================================
+Shared / 複数コンポーネントで共有するスタイル
+（特定の1ファイルではなく、ページ全体で使い回すもの）
+========================================================= */
 
 /* =========================
 Container
@@ -111,7 +77,7 @@ Container
 }
 
 /* =========================
-Section spacing
+Section spacing（About.tsx / Service.tsx / Contact.tsx）
 ========================= */
 
 .section-about,
@@ -139,34 +105,128 @@ Section spacing
 }
 
 /* =========================
-Header
+Typography
+========================= */
+
+/* ---------- Hero（Hero.tsx） ---------- */
+
+.hero-title {
+    color: var(--color-hero-heading);
+
+    font-size: clamp(
+        30px,
+        9.23vw,
+        100px
+    );
+
+    font-weight: 700;
+    line-height: 2;
+    letter-spacing: 0.3em;
+}
+
+@media (min-width: 768px) {
+    .hero-title {
+        line-height: 1.6;
+    }
+}
+
+/* ---------- Body（Hero.tsx / About.tsx / Contact.tsx） ---------- */
+
+.body-text {
+    color: var(--color-text);
+
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 3.5;
+    letter-spacing: 0.3em;
+}
+
+@media (min-width: 768px) {
+    .body-text {
+        font-size: 1.125rem;
+        letter-spacing: 0.4em;
+    }
+}
+
+/* =========================
+Logo（Header.tsx / Contact.tsx）
+========================= */
+
+.logo {
+    color: var(--color-logo);
+
+    font-family: var(--font-montserrat), sans-serif;
+    font-size: 1.875rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+}
+
+@media (min-width: 768px) {
+    .logo {
+        font-size: 2.5rem;
+    }
+}
+
+/* =========================
+Button（HeaderCTA.tsx / FormButton.tsx / FormSuccess.tsxの「BACK TO TOP」）
+========================= */
+
+/* ---------- Button Typography ---------- */
+
+.button {
+    display: inline-block;
+
+    box-sizing: border-box;
+
+    color: var(--color-button);
+    background-color: transparent;
+
+    border: 1px solid var(--color-button);
+
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+/* ---------- Button Hover ---------- */
+
+.button:hover {
+    color: var(--color-button);
+
+    transform: translateY(-3px);
+}
+
+@media (min-width: 768px) {
+    .button {
+        font-size: 1.125rem;
+    }
+}
+
+/* =========================================================
+セクション別スタイル（ページの上から順）
+========================================================= */
+
+/* =========================
+Header（Header.tsx）
 ========================= */
 
 .site-header {
     width: 100%;
-    height: 89px;
+    height: var(--header-height-pc);
     padding: 20px 0;
     box-sizing: border-box;
 }
 
 @media (max-width: 767px) {
     .site-header {
-        height: 57px;
+        height: var(--header-height-sp);
         padding: 8px 0;
     }
 }
-
-/* ---------- Global Menu ---------- */
-
-.header-menu {
-    color: var(--color-text);
-
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-}
-
-
 
 /* ---------- Hamburger Line ---------- */
 
@@ -183,7 +243,6 @@ Header
     transition: transform 0.35s ease;
 }
 
-
 /* ---------- Normal ---------- */
 
 .hamburger-line:first-child {
@@ -193,7 +252,6 @@ Header
 .hamburger-line:last-child {
     transform: translateY(6px);
 }
-
 
 /* ---------- Open ---------- */
 
@@ -206,16 +264,16 @@ Header
 }
 
 /* =========================
-SP Menu
+SP Menu（Header.tsx）
 ========================= */
 
 .sp-menu {
     position: fixed;
-    top: 57px;
+    top: var(--header-height-sp);
     left: 0;
 
     width: 100%;
-    height: calc(100vh - 57px);
+    height: calc(100vh - var(--header-height-sp));
 
     box-sizing: border-box;
 
@@ -236,7 +294,6 @@ SP Menu
     transition: transform 0.4s ease;
 }
 
-
 /* ---------- Open ---------- */
 
 .sp-menu.is-open {
@@ -244,7 +301,8 @@ SP Menu
 }
 
 /* =========================
-Section Heading
+Section Heading（SectionHeading.tsx＝About.tsx/Contact.tsxの見出し。
+heading-enのみService.tsxの単独見出しでも使用）
 ========================= */
 
 .section-heading {
@@ -294,7 +352,7 @@ Section Heading
 }
 
 /* =========================
-Service
+Service（Service.tsx / ServiceCard.tsx）
 ========================= */
 
 /* ---------- H3 Service Lead ---------- */
@@ -349,7 +407,8 @@ Service
     }
 }
 
-/* 画像アニメーション */
+/* 画像アニメーション：serviceImagesを2セット並べてから-3スライド分移動させることで、
+   継ぎ目の見えない無限ループに見せている */
 .service-marquee {
     --slide-width: 500px;
 
@@ -383,10 +442,10 @@ Service
 }
 
 /* =========================
-Form
+Form（お問い合わせフォーム一式：FormField.tsx / ContactForm.tsx / FormSuccess.tsx）
 ========================= */
 
-/* ---------- Form Label ---------- */
+/* ---------- Form Field（FormField.tsx） ---------- */
 
 .form-label {
     color: var(--color-text);
@@ -422,16 +481,6 @@ Form
     .form-required {
         font-size: 0.75rem;
     }
-}
-
-/* ---------- Placeholder ---------- */
-
-.form-placeholder {
-    color: var(--color-text);
-
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
 }
 
 /* ---------- Form Input ---------- */
@@ -517,87 +566,13 @@ Form
     }
 }
 
-/* =========================
-Footer
-========================= */
-
-.footer-text {
-    color: var(--color-text);
-
-    font-size: 0.5rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-}
-
-@media (min-width: 768px) {
-    .footer-text {
-        font-size: 0.75rem;
-        letter-spacing: 0.2em;
+@media (max-width: 767px) {
+    .form-input {
+        width: 100%;
     }
 }
 
-/* =========================
-Logo
-========================= */
-
-.logo {
-    color: var(--color-logo);
-
-    font-family: var(--font-montserrat), sans-serif;
-    font-size: 1.875rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-}
-
-@media (min-width: 768px) {
-    .logo {
-        font-size: 2.5rem;
-    }
-}
-
-/* =========================
-Button
-========================= */
-
-/* ---------- Button Typography ---------- */
-
-.button {
-    display: inline-block;
-
-    box-sizing: border-box;
-
-    color: var(--color-button);
-    background-color: transparent;
-
-    border: 1px solid var(--color-button);
-
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-
-    transition:
-        color 0.3s ease,
-        transform 0.3s ease;
-}
-
-/* ---------- Button Hover ---------- */
-
-.button:hover {
-    color: var(--color-button);
-
-    transform: translateY(-3px);
-}
-
-@media (min-width: 768px) {
-    .button {
-        font-size: 1.125rem;
-    }
-}
-
-
-/* =========================
-Contact Form
-========================= */
+/* ---------- Contact Form 全体の入れ物（ContactForm.tsx） ---------- */
 
 .contact-form {
     position: relative;
@@ -624,15 +599,21 @@ Contact Form
     gap: 32px;
 }
 
-/* ---------- Form Button ---------- */
+@media (max-width: 767px) {
+    .contact-form {
+        width: 342px;
+        min-height: 619px;
 
-.contact-form .form-button {
-    margin-top: 0;
+        padding: 28px 32px;
+    }
+
+    .contact-form-fields {
+        width: 100%;
+        gap: 28px;
+    }
 }
 
-/* =========================
-Form Success
-========================= */
+/* ---------- Form Success（FormSuccess.tsx） ---------- */
 
 .form-success {
     position: absolute;
@@ -650,8 +631,6 @@ Form Success
     align-items: center;
 }
 
-/* ---------- Success Title ---------- */
-
 .form-success-title {
     margin: 0;
 
@@ -663,8 +642,6 @@ Form Success
 
     white-space: nowrap;
 }
-
-/* ---------- Success Message ---------- */
 
 .form-success-message {
     margin-top: 60px;
@@ -681,8 +658,6 @@ Form Success
     white-space: nowrap;
 }
 
-/* ---------- Success Button ---------- */
-
 .form-success-button {
     width: auto;
 
@@ -697,34 +672,7 @@ Form Success
     width: 100%;
 }
 
-/* =========================
-SP
-========================= */
-
 @media (max-width: 767px) {
-
-    /* ---------- Contact Form ---------- */
-
-    .contact-form {
-        width: 342px;
-        min-height: 619px;
-
-        padding: 28px 32px;
-    }
-
-    .contact-form-fields {
-        width: 100%;
-        gap: 28px;
-    }
-
-    /* ---------- Form Input ---------- */
-
-    .form-input {
-        width: 100%;
-    }
-
-    /* ---------- Success ---------- */
-
     .form-success {
         padding: 180px 40px;
     }
@@ -750,20 +698,21 @@ SP
     }
 }
 
+/* =========================
+Footer（Footer.tsx）
+========================= */
 
-/* アニメーション */
-@keyframes fade-up {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
+.footer-text {
+    color: var(--color-text);
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    font-size: 0.5rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
 }
 
-.animate-fade-up {
-    animation: fade-up 0.8s ease-out both;
+@media (min-width: 768px) {
+    .footer-text {
+        font-size: 0.75rem;
+        letter-spacing: 0.2em;
+    }
 }

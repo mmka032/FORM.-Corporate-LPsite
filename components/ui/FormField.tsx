@@ -31,7 +31,7 @@ export default function FormField({
     const hasError = Boolean(error);
 
     return (
-        <div className="form-field">
+        <div>
             {/* label */}
             <div className="flex items-center gap-3.5">
                 <label htmlFor={name} className="form-label">

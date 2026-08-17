@@ -27,6 +27,9 @@ export default function Contact() {
                     />
 
                     {/* Contact content */}
+                    {/* 他セクションはlg:で切り替えているが、ここは2カラム化(grid-cols-2)自体がxl:から始まるため、
+                        余白もxl:に合わせている。lg:のままだとフォーム(width:550px)とテキストが窮屈になり、
+                        デザインのズレが大きくなるための意図的な差異 */}
                     <div className="grid xl:grid-cols-2">
 
                         {/* テキスト */}
