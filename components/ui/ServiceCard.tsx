@@ -10,7 +10,7 @@ export default function ServiceCard({
     image,
 }: ServiceCardProps) {
     return (
-        <article className="bg-(--color-card-bg)">
+        <article className="bg-card-bg">
             {/* img */}
             <img 
                 src={image} 

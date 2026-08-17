@@ -22,7 +22,7 @@ export default function About() {
                         }}
                     />
 
-                    <p className="body-text pt-12.5 md:pt-23 lg:pt-25">
+                    <p className="body-text section-gap">
                         私たちは、企業やブランドが持つ価値を丁寧に見つめ、<br className="hidden md:block" />
                         デザインとテクノロジーによって、その魅力を最大限に引き出します。<br className="hidden md:block" />
                         見た目の美しさだけではなく、<br className="hidden md:block" />

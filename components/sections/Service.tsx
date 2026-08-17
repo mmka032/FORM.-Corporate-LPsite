@@ -34,7 +34,7 @@ export default function Service() {
 
             {/* リード文 */}
             <FadeIn>
-                <p className="service-lead text-center pt-12.5 md:pt-23 lg:pt-25">
+                <p className="service-lead text-center section-gap">
                     {/* SP → br表示 → 改行 */}
                     {/* 768px〜  → br非表示 → 1行 */}
                     アイデアを、<br className="md:hidden" />
@@ -42,7 +42,7 @@ export default function Service() {
                 </p>
 
                 {/* Moving image */}
-                <div className="overflow-hidden pt-12.5 md:pt-23 lg:pt-25">
+                <div className="overflow-hidden section-gap">
                     <div className="service-marquee">
                         {[...serviceImages, ...serviceImages].map((
                             image, index) => {

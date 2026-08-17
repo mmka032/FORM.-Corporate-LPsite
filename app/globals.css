@@ -4,6 +4,18 @@ html {
     scroll-behavior: smooth;
 }
 
+/* =========================================================
+z-indexの重なり順（値が大きいほど手前）
+数値は各コンポーネントのTailwindクラス（z-*）に直書きされているため、
+ここに一覧としてまとめておく。新しく要素を追加するときの参考にする。
+
+  9999  カスタムカーソル（CustomCursor.tsx）……常に最前面
+   100  SPメニュー（.sp-menu／Header.tsx）………ハンバーガーで開く全画面ナビ
+    50  ヘッダー（.site-header／Header.tsx）……スクロールしても最前面に固定
+    10  各セクションの装飾ゴールドラインと本文（Hero/About/Service/Contact.tsx）
+     0  Contact.tsx下部の装飾ゴールドラインのみ……本文より背面に沈める
+========================================================= */
+
 /* =========================
 Color
 ========================= */
@@ -61,6 +73,15 @@ body {
     font-family: var(--font-noto-serif-jp), serif;
 }
 
+/* PC（md:以上）ではCustomCursor.tsxが丸いカーソルを追従表示するため、
+   標準の矢印カーソルは非表示にして丸だけに置き換える。
+   SPはCustomCursorが非表示(hidden)なので、矢印カーソルはそのまま残す */
+@media (min-width: 768px) {
+    body {
+        cursor: none;
+    }
+}
+
 /* =========================================================
 Shared / 複数コンポーネントで共有するスタイル
 （特定の1ファイルではなく、ページ全体で使い回すもの）
@@ -101,6 +122,29 @@ Section spacing（About.tsx / Service.tsx / Contact.tsx）
     .section-service {
         padding-top: 0;
         padding-bottom: 100px;
+    }
+}
+
+/* =========================
+Section gap（About.tsx / Service.tsx）
+見出し・リード文に限らず、セクション内の要素間で共通して使う上余白。
+以前は各ファイルにpt-12.5 md:pt-23 lg:pt-25と同じ値がベタ書きされていたため、ここに集約した。
+Contact.tsxのみ2カラム化がxl:から始まる都合でxl:pt-25を使うため、意図的にこのクラスを使っていない。
+========================= */
+
+.section-gap {
+    padding-top: 50px;
+}
+
+@media (min-width: 768px) {
+    .section-gap {
+        padding-top: 92px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .section-gap {
+        padding-top: 100px;
     }
 }
 
