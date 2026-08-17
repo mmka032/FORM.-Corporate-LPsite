@@ -7,7 +7,7 @@ export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <header className="site-header sticky top-0 z-50">
+        <header className="w-full h-(--header-height-sp) py-2 box-border md:h-(--header-height-pc) md:py-5 sticky top-0 z-50">
             <div className="bg-page-bg/80 backdrop-blur-sm">
                 <div className="inner h-full py-2
                             grid grid-cols-[1fr_auto] md:grid-cols-[1fr_auto_1fr] 
@@ -48,20 +48,18 @@ export default function Header() {
                         aria-expanded={isMenuOpen}
                         onClick={() => setIsMenuOpen((prev) => !prev)}
                     >
-                        <span
-                            className={`hamburger-line ${isMenuOpen ? "is-open" : ""
-                                }`}
-                        />
-                        <span
-                            className={`hamburger-line ${isMenuOpen ? "is-open" : ""
-                                }`}
-                        />
+                        <span className={`hamburger-line ${isMenuOpen ? "is-open" : ""}`} />
+                        <span className={`hamburger-line ${isMenuOpen ? "is-open" : ""}`} />
                     </button>
                 </div>
             </div>
 
             {/* SP menu */}
-            <nav className={`sp-menu ${isMenuOpen ? "is-open" : ""}`}>
+            <nav className={`fixed top-(--header-height-sp) left-0 w-full h-[calc(100vh-var(--header-height-sp))] 
+                            box-border bg-page-bg flex flex-col items-center justify-center gap-20 
+                            text-center z-100 transition-transform duration-400 ease-[ease] 
+                            ${isMenuOpen ? "translate-y-0" : "translate-y-full"}`}
+            >
                 <a href="#about" onClick={() => setIsMenuOpen(false)}>
                     About
                 </a>

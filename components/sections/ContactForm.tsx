@@ -121,13 +121,17 @@ export default function ContactForm() {
 
     return (
         // onSubmitで受けることで、送信ボタンのクリックとEnterキー送信の両方に対応できる
-        <form className="contact-form" onSubmit={handleSubmit}>
+        <form
+            className="relative w-85.5 min-h-154.75 py-7 px-8 box-border bg-form-bg
+                    flex flex-col items-center md:w-137.5 md:min-h-193.5 md:py-12 md:px-10"
+            onSubmit={handleSubmit}
+        >
             {isSubmitted ? (
                 <FormSuccess
                     onBack={() => setIsSubmitted(false)}
                 />
             ) : (
-                <div className="contact-form-fields">
+                <div className="w-full flex flex-col gap-7 md:gap-8">
                     {/* お名前 */}
                     <FormField
                         label="お名前"

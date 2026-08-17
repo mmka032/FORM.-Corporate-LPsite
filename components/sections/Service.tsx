@@ -44,6 +44,7 @@ export default function Service() {
                 {/* Moving image */}
                 <div className="overflow-hidden section-gap">
                     <div className="service-marquee">
+                        {/* 画像を2セット並べて継ぎ目のない無限ループにする（アニメーション詳細はglobals.cssの.service-marquee参照） */}
                         {[...serviceImages, ...serviceImages].map((
                             image, index) => {
                             return (

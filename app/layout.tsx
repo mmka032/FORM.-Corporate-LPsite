@@ -31,7 +31,8 @@ export default function RootLayout({
         lang="ja" 
         className={`${notoSerifJP.variable} ${montserrat.variable} antialiased`}
     >
-        <body>
+        {/* md:cursor-none：PC(md:以上)ではCustomCursor.tsxが丸いカーソルを追従表示するため、標準の矢印は消す */}
+        <body className="md:cursor-none">
           <CustomCursor />
           {children}
           </body>

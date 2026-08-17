@@ -10,8 +10,8 @@ z-indexの重なり順（値が大きいほど手前）
 ここに一覧としてまとめておく。新しく要素を追加するときの参考にする。
 
   9999  カスタムカーソル（CustomCursor.tsx）……常に最前面
-   100  SPメニュー（.sp-menu／Header.tsx）………ハンバーガーで開く全画面ナビ
-    50  ヘッダー（.site-header／Header.tsx）……スクロールしても最前面に固定
+   100  SPメニュー（Header.tsx）………………ハンバーガーで開く全画面ナビ
+    50  ヘッダー本体（Header.tsx）…………スクロールしても最前面に固定
     10  各セクションの装飾ゴールドラインと本文（Hero/About/Service/Contact.tsx）
      0  Contact.tsx下部の装飾ゴールドラインのみ……本文より背面に沈める
 ========================================================= */
@@ -72,19 +72,17 @@ body {
     color: var(--color-text);
     font-family: var(--font-noto-serif-jp), serif;
 }
-
-/* PC（md:以上）ではCustomCursor.tsxが丸いカーソルを追従表示するため、
-   標準の矢印カーソルは非表示にして丸だけに置き換える。
-   SPはCustomCursorが非表示(hidden)なので、矢印カーソルはそのまま残す */
-@media (min-width: 768px) {
-    body {
-        cursor: none;
-    }
-}
+/* cursor: noneはlayout.tsxのbodyにmd:cursor-noneとして直接付与している
+   （単独の1プロパティで、PC限定という条件もTailwindのmd:と完全一致するため） */
 
 /* =========================================================
 Shared / 複数コンポーネントで共有するスタイル
 （特定の1ファイルではなく、ページ全体で使い回すもの）
+
+以下、すべてのブレークポイントはモバイルファースト（SPが基本値、
+min-width:768px/1024pxで上書き）で統一している。
+Tailwindのmd:/lg:/xl:と同じ考え方に揃えることで、
+どちらを読むときも「SP→PC」の同じ順番で理解できるようにするため。
 ========================================================= */
 
 /* =========================
@@ -103,25 +101,24 @@ Section spacing（About.tsx / Service.tsx / Contact.tsx）
 
 .section-about,
 .section-contact {
-    padding-top: 100px;
-    padding-bottom: 128px;
+    padding-top: 50px;
+    padding-bottom: 100px;
 }
 
 .section-service {
     padding-top: 0;
-    padding-bottom: 128px;
+    padding-bottom: 100px;
 }
 
-@media (max-width: 767px) {
+@media (min-width: 768px) {
     .section-about,
     .section-contact {
-        padding-top: 50px;
-        padding-bottom: 100px;
+        padding-top: 100px;
+        padding-bottom: 128px;
     }
 
     .section-service {
-        padding-top: 0;
-        padding-bottom: 100px;
+        padding-bottom: 128px;
     }
 }
 
@@ -256,21 +253,10 @@ Button（HeaderCTA.tsx / FormButton.tsx / FormSuccess.tsxの「BACK TO TOP」）
 
 /* =========================
 Header（Header.tsx）
+※ ヘッダー本体(.site-header相当)とSPメニュー(旧.sp-menu)はレイアウトのみで
+単独ファイルでしか使わないため、Tailwindのアービトラリ値に置き換え済み。
+ここにはCSSでしか表現できないハンバーガーの線だけ残している
 ========================= */
-
-.site-header {
-    width: 100%;
-    height: var(--header-height-pc);
-    padding: 20px 0;
-    box-sizing: border-box;
-}
-
-@media (max-width: 767px) {
-    .site-header {
-        height: var(--header-height-sp);
-        padding: 8px 0;
-    }
-}
 
 /* ---------- Hamburger Line ---------- */
 
@@ -305,43 +291,6 @@ Header（Header.tsx）
 
 .hamburger-line:last-child.is-open {
     transform: rotate(-16deg);
-}
-
-/* =========================
-SP Menu（Header.tsx）
-========================= */
-
-.sp-menu {
-    position: fixed;
-    top: var(--header-height-sp);
-    left: 0;
-
-    width: 100%;
-    height: calc(100vh - var(--header-height-sp));
-
-    box-sizing: border-box;
-
-    background-color: var(--color-page-bg);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    gap: 80px;
-
-    text-align: center;
-
-    z-index: 100;
-
-    transform: translateY(100%);
-    transition: transform 0.4s ease;
-}
-
-/* ---------- Open ---------- */
-
-.sp-menu.is-open {
-    transform: translateY(0);
 }
 
 /* =========================
@@ -454,7 +403,7 @@ Service（Service.tsx / ServiceCard.tsx）
 /* 画像アニメーション：serviceImagesを2セット並べてから-3スライド分移動させることで、
    継ぎ目の見えない無限ループに見せている */
 .service-marquee {
-    --slide-width: 500px;
+    --slide-width: 300px;
 
     display: flex;
     width: max-content;
@@ -479,9 +428,9 @@ Service（Service.tsx / ServiceCard.tsx）
     }
 }
 
-@media (max-width: 767px) {
+@media (min-width: 768px) {
     .service-marquee {
-        --slide-width: 300px;
+        --slide-width: 500px;
     }
 }
 
@@ -610,52 +559,8 @@ Form（お問い合わせフォーム一式：FormField.tsx / ContactForm.tsx / 
     }
 }
 
-@media (max-width: 767px) {
-    .form-input {
-        width: 100%;
-    }
-}
-
-/* ---------- Contact Form 全体の入れ物（ContactForm.tsx） ---------- */
-
-.contact-form {
-    position: relative;
-
-    width: 550px;
-    min-height: 774px;
-
-    padding: 48px 40px;
-
-    box-sizing: border-box;
-
-    background-color: var(--color-form-bg);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.contact-form-fields {
-    width: 100%;
-
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-}
-
-@media (max-width: 767px) {
-    .contact-form {
-        width: 342px;
-        min-height: 619px;
-
-        padding: 28px 32px;
-    }
-
-    .contact-form-fields {
-        width: 100%;
-        gap: 28px;
-    }
-}
+/* ---------- Contact Form 全体の入れ物 ----------
+ContactForm.tsx専用でレイアウトのみのため、Tailwindのアービトラリ値に置き換え済み */
 
 /* ---------- Form Success（FormSuccess.tsx） ---------- */
 
@@ -668,7 +573,7 @@ Form（お問い合わせフォーム一式：FormField.tsx / ContactForm.tsx / 
 
     box-sizing: border-box;
 
-    padding: 200px 65px;
+    padding: 180px 40px;
 
     display: flex;
     flex-direction: column;
@@ -680,7 +585,7 @@ Form（お問い合わせフォーム一式：FormField.tsx / ContactForm.tsx / 
 
     color: var(--color-text);
 
-    font-size: 30px;
+    font-size: 24px;
     font-weight: 500;
     letter-spacing: 0.2em;
 
@@ -688,13 +593,13 @@ Form（お問い合わせフォーム一式：FormField.tsx / ContactForm.tsx / 
 }
 
 .form-success-message {
-    margin-top: 60px;
+    margin-top: 30px;
 
     color: var(--color-text);
 
-    font-size: 18px;
+    font-size: 12px;
     font-weight: 500;
-    line-height: 63px;
+    line-height: 49px;
     letter-spacing: 0.2em;
 
     text-align: center;
@@ -705,8 +610,8 @@ Form（お問い合わせフォーム一式：FormField.tsx / ContactForm.tsx / 
 .form-success-button {
     width: auto;
 
-    margin-top: 109px;
-    padding: 4px 40px;
+    margin-top: 64px;
+    padding: 4px 0;
 
     white-space: nowrap;
 }
@@ -716,29 +621,25 @@ Form（お問い合わせフォーム一式：FormField.tsx / ContactForm.tsx / 
     width: 100%;
 }
 
-@media (max-width: 767px) {
+@media (min-width: 768px) {
     .form-success {
-        padding: 180px 40px;
+        padding: 200px 65px;
     }
 
     .form-success-title {
-        font-size: 24px;
-        font-weight: 500;
+        font-size: 30px;
     }
 
     .form-success-message {
-        margin-top: 30px;
+        margin-top: 60px;
 
-        font-size: 12px;
-        line-height: 49px;
-        letter-spacing: 0.2em;
-
-        white-space: nowrap;
+        font-size: 18px;
+        line-height: 63px;
     }
 
     .form-success-button {
-        margin-top: 64px;
-        padding: 4px 0;
+        margin-top: 109px;
+        padding: 4px 40px;
     }
 }
 

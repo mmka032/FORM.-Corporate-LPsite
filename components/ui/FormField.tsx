@@ -55,11 +55,7 @@ export default function FormField({
                         placeholder={placeholder}
                         maxLength={maxLength}
                         onChange={onChange}
-                        className={`
-                            form-input
-                            form-textarea
-                            ${hasError ? "form-input-error" : ""}
-                        `}
+                        className={`form-input form-textarea ${hasError ? "form-input-error" : ""}`}
                         aria-invalid={hasError}
                         aria-describedby={hasError ? `${name}-error` : undefined}
                     />
@@ -71,10 +67,7 @@ export default function FormField({
                         value={value}
                         placeholder={placeholder}
                         onChange={onChange}
-                        className={`
-                            form-input
-                            ${hasError ? "form-input-error" : ""}
-                        `}
+                        className={`form-input ${hasError ? "form-input-error" : ""}`}
                         aria-invalid={hasError}
                         aria-describedby={hasError ? `${name}-error` : undefined}
                     />
